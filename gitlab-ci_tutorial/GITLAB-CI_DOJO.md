@@ -4,15 +4,15 @@
 
 O [GitLab-CI](https://docs.gitlab.com/ee/ci/) é uma ferramenta de Integração Contínua (CI) e Entrega/Deploy Contínuo (CD) utilizada nos repositórios hospedados no GitLab. 
 
-Ele funciona através de [_runners_](https://docs.gitlab.com/ee/ci/runners/index.html), que são processos que pega e executa o seu CI/CD. O GitLab já disponibiliza _runners_ públicos, mas se desejar é possível especificar os seus proprios _runners_ (como por exemplo na sua máquina ou em uma _cloud_ específica).
+Ele funciona através de [_runners_](https://docs.gitlab.com/ee/ci/runners/index.html), que são processos que acessam e executam o seu _pipeline_ de CI/CD. O GitLab já disponibiliza _runners_ públicos, mas se desejar é possível especificar os seus proprios _runners_ (como por exemplo na sua máquina ou em uma _cloud_ específica).
 
-Você também pode utilizar o GitLab-CI mesmo tendo o reposítorio hospedado no GitHub, é necessário somente espelhar os reposítorios, é possível encontrar as informações necessárias e os passos nesse [guia](https://docs.gitlab.com/ee/ci/ci_cd_for_external_repos/github_integration.html).
+Você também pode utilizar o GitLab-CI mesmo tendo o reposítorio hospedado no GitHub. Para isto é necessário somente espelhar os repositórios. É possível encontrar as informações necessárias e os passos nesse [guia](https://docs.gitlab.com/ee/ci/ci_cd_for_external_repos/github_integration.html).
 
-Para configurar e definir o seu CI/CD, você tem que criar um arquivo na raiz com o nome `.gitlab-ci.yml`, o funcionamento do yaml será explicado no próximo tópico. PS: é possível utilizar outro nome, mas para isso é necessário alterar as configurações do repositório.
+Para configurar e definir o seu _pipeline_ de CI/CD, você tem que criar um arquivo na raiz com o nome `.gitlab-ci.yml`, o funcionamento do yaml será explicado no próximo tópico. Obs.: é possível utilizar outro nome, mas para isso é necessário alterar as configurações do repositório.
 
 ## 2. O YAML
 
-O YAML (ou YML) é uma linguagem de serialização de dados [[1]](https://circleci.com/blog/what-is-yaml-a-beginner-s-guide/?utm_medium=SEM&utm_source=gnb&utm_campaign=SEM-gnb-DSA-Eng-ni&utm_content=&utm_term=dynamicSearch-&gclid=Cj0KCQjwg7KJBhDyARIsAHrAXaF1Jr_TpoPt0du-qsfsvqVs7rOEXlF6_ogTI24eSx4uxWYcb0-M4b0aAuQIEALw_wcB) fortemente identada. Utilizada, principalmente, para arquivos de configuração.
+O YAML (ou YML) é uma linguagem de serialização de dados [[1]](https://circleci.com/blog/what-is-yaml-a-beginner-s-guide/?utm_medium=SEM&utm_source=gnb&utm_campaign=SEM-gnb-DSA-Eng-ni&utm_content=&utm_term=dynamicSearch-&gclid=Cj0KCQjwg7KJBhDyARIsAHrAXaF1Jr_TpoPt0du-qsfsvqVs7rOEXlF6_ogTI24eSx4uxWYcb0-M4b0aAuQIEALw_wcB) fortemente identada e utilizada, principalmente, para arquivos de configuração.
 
 A estrutura básica de uma yml é um _map_:
 
