@@ -1,6 +1,6 @@
 # Trabalho Individual 02 2021.1
 
-A Gestão de Configuração de Software é parte fundamental da disciplina de GCES (Gerência de Configuração e Evolução de Software) e, dominar os conhecimentos de configuração de ambiente, containerização, virtualização, integração e deploy contínuo tem se tornado cada vez mais necessário para ingressar no mercado de trabalho.
+A Gerência de Configuração de Software é parte fundamental da disciplina de GCES (Gerência de Configuração e Evolução de Software) e, dominar os conhecimentos de configuração de ambiente, containerização, virtualização, integração e deploy contínuo tem se tornado cada vez mais necessário para ingressar no mercado de trabalho.
 
 Para exercitar estes conhecimentos, você deverá aplicar os conceitos estudados ao longo da disciplina no produto de software contido neste repositório.
 
