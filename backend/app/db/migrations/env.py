@@ -19,17 +19,23 @@ config.set_main_option("sqlalchemy.url", str(DATABASE_URL))
 
 
 def run_migrations_online() -> None:
+    print('aaa')
     connectable = engine_from_config(
         config.get_section(config.config_ini_section),
         prefix="sqlalchemy.",
         poolclass=pool.NullPool,
     )
 
+    print('bbb')
+
     with connectable.connect() as connection:
+        print('ccc')
         context.configure(connection=connection, target_metadata=target_metadata)
 
         with context.begin_transaction():
+            print('ddd')
             context.run_migrations()
+            print('eee')
 
 
 run_migrations_online()
