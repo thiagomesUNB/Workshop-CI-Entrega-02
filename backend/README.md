@@ -1,116 +1,131 @@
-# FastAPI com PostgreSQL
+# Koa
+
+- [Pré-requisitos](#prerequisites)
+- [Local Setup](#local)
+- [Ejection](#ejection)
+- [Commands](#commands)
+- [External Docs](#docs)
+- [Project Structure](#structure)
+- [License](#license)
 
 ## Pré-requisitos
 
-- poetry (`pip install poetry`)
+- Node v12+
+- Postgres v10+
+- Docker
 
-## Passo a passo
+## **Instalação**
 
-Vamos rodar o Postgres num container para simplificar. Caso queira instalar localmente, [clique aqui](https://www.postgresql.org/download/).
+1.  **Local**
 
-Primeiro, clone o repositorio
+    ```
+    git clone <url>
 
-```console
-git clone https://github.com/FGA-GCES/Trabalho-Individual-2021-1
+    cd koa-boilerplate
 
-cd Trabalho-Individual-2021-1/backend
-```
+    npm install
 
-Crie o `.env` para configurarmos o container que rodará o postgres
+    npm run build
+    ```
 
-```console
-printf '%s\n' \
-       'POSTGRES_DB=rwdb' \
-       'POSTGRES_PORT=5432' \
-       'POSTGRES_USER=postgres' \
-       'POSTGRES_PASSWORD=postgres' \
-       > .env
+2.  **Environment e configuração do DB**
 
-source .env
+    Adicione o arquivo .env na raiz do projeto com a seguintes variaveis de ambiente. 
 
-docker run -d --name pgdb --rm \
-       -e POSTGRES_USER="$POSTGRES_USER" \
-       -e POSTGRES_PASSWORD="$POSTGRES_PASSWORD" \
-       -e POSTGRES_DB="$POSTGRES_DB" \
-       postgres
-```
+    ```
+    NODE_ENV=development
+    PORT=3000
+    SECRET=foobar
+    TYPEORM_CONNECTION=postgres
+    TYPEORM_URL=postgres://postgres:Password1@localhost:5432/postgres
+    TYPEORM_ENTITIES=build/src/entities/*.js
+    TYPEORM_MIGRATIONS=build/migrations/*.js
+    TYPEORM_MIGRATIONS_TABLE_NAME=migrations
+    TYPEORM_MIGRATIONS_DIR=migrations
+    ```
 
-Adicione o host ao `.env`:
+    Rode as migrações usando o TypeORM:
 
-```console
-echo "POSTGRES_HOST=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' pgdb)" >> .env
-```
+    ```
+    npx typeorm migration:run
+    ```
 
-Instale as dependencias num virtualenv (criado pelo poetry):
+3.  **Rodar localmente**
 
-```console
-poetry install
+    Para rodar a aplicação locamente:
 
-poetry shell
-```
+    ```
+    npm run start:dev
+    ```
 
-Exporte as variaveis de ambiente novamente, já que entramos no virtualenv:
+    Runs:
 
-```console
-source .env
-```
+    - Build
+    - Linting
+    - Unit Tests
+    - Docker Build
+    - Integration Tests
 
-Complemente o `.env`:
+4.  **Testes**
 
-```console
-echo DB_CONNECTION=postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@$POSTGRES_HOST:$POSTGRES_PORT/$POSTGRES_DB >> .env
+    Para rodar os testes, utilize o comando:
 
-echo SECRET_KEY=$(openssl rand -hex 32) >> .env
-```
+    ```
+    npm run unittest
+    ```
 
-Faça as migrations pro banco:
+## **Comandos**
 
-```console
-alembic upgrade head
-```
+1.  **npm scripts**
 
-Por fim, rode a aplicação:
+    ```
+    npm run <command>
+    ```
 
-```console
-uvicorn app.main:app --reload
-```
+    - `start:dev` Run typescript files directly using nodemon and tsnode. Detects changes and automatically restarts server
+    - `build` Runs tsc to compile the app. Files are emitted to /build.
+    - `eject` Removes example code
+    - `lint` Checks for linting errors using ESLint configuration
+    - `unittest` Run jest unittests with code coverage
+    - `unittest:watch` Detects changes and automatically re-runs tests
+    - `docker:up` Standup the dockerize app, a postgres docker image and a migration image that migrates the db
+    - `docker:down` Teardown the docker containers
+    - `inttest` Run integration tests against the docker images
+    - `inttest:watch` Run integration tests and watch for changes
+    - `commit` Runs the previouse commands to verify changes before commit. This command also runs in the pipeline
 
-## Rodando os Testes
+2.  **typeorm scripts**
 
-Para rodar os testes do projeto execute o comando:
+    All TypeORM commands run on the configuration information specified in the .env folder.
+    See [TypeORM CLI Docs](https://github.com/typeorm/typeorm/blob/master/docs/using-cli.md)
 
-```console
-pytest
-```
+    ```
+    npx typeorm <command>
+    ```
 
-## Estrutura do projeto
+    - `migration:run` Apply any reminaing migrations to the db specified in
+    - `migration:revert` Revert the most recent migration applied
+    - `migration:show` Show all migrations with status
+    - `migration:generate -n migrationNameHere` Compare entities to current db schema and generate migration with changes
+    - `migration:create -n migrationNameHere` Create a new migration
 
-Arquivos relacionados a aplicação estão nas pastas `app` e `tests`
+## **Docs**
 
-```text
-    app
-    ├── api              - web related stuff.
-    │   ├── dependencies - dependencies for routes definition.
-    │   ├── errors       - definition of error handlers.
-    │   └── routes       - web routes.
-    ├── core             - application configuration, startup events, logging.
-    ├── db               - db related stuff.
-    │   ├── migrations   - manually written alembic migrations.
-    │   └── repositories - all crud stuff.
-    ├── models           - pydantic models for this application.
-    │   ├── domain       - main models that are used almost everywhere.
-    │   └── schemas      - schemas for using in web routes.
-    ├── resources        - strings that are used in web responses.
-    ├── services         - logic that is not just crud related.
-    └── main.py          - FastAPI application creation and configuration.
-```
+- [Koa](https://devdocs.io/koa/)
+- [Typescript](https://www.typescriptlang.org/docs/home)
+- [TypeORM](https://github.com/typeorm/typeorm/tree/master/docs)
+- [Awilix-Koa](https://github.com/jeffijoe/awilix-koa)
+- [Docker](https://docs.docker.com)
+- [Hapi/Joi](https://github.com/hapijs/joi/blob/master/API.md)
+- [EsLint](https://eslint.org/docs/user-guide/configuring)
+- [Sinon](https://sinonjs.org/releases/latest/)
+- [Supertest](https://www.npmjs.com/package/supertest)
 
-## Rotas
+## **License**
 
-Caso queira visualizar a documentação da api, basta acessar o caminho `/docs` ou `/redoc` (Swagger ou ReDoc, respectivamente)
-
-Isso é, no seu navegador, acesse (por exemplo): [localhost:8000/docs](http://localhost:8000/docs)
+- **[MIT license](http://opensource.org/licenses/mit-license.php)**
+- Copyright 2020 © Evan Gordon Fleming.
 
 ## Fonte
 
-O repositório original desse serviço pode ser encontrado [aqui](https://github.com/nsidnev/fastapi-realworld-example-app)
+O repositório original desse serviço pode ser encontrado [aqui](https://github.com/gothinkster/realworld)

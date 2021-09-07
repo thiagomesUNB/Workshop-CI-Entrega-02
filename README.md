@@ -4,23 +4,38 @@ A Gerência de Configuração de Software é parte fundamental da disciplina de 
 
 Para exercitar estes conhecimentos, você deverá aplicar os conceitos estudados ao longo da disciplina no produto de software contido neste repositório.
 
-O sistema se trata de uma aplicação Web em Typescript, que é composta de:
+O sistema se trata de uma aplicação Web em NextJs e um backend em Koa, que é composta de:
 
-- Front-end escrito em React (`chat-app`);
-- Back-end dividido em três microsserviços:
-  - `users-service`: express + ORM
-  - `chat-service`: não implementado
-  - `api-gateway`: graphql
-- 2 Bancos de Dados MySQL 5.7.20 para users-service e chat-service (mesmo este não tendo sido implementado ainda)
-  - `phpmyadmin`, como interface para gerenciamento dos bancos de dados
+- Front-end escrito em React;
+- Back-end dividido em Koa;
+- 1 Banco de Dados Postgres.
 
-Para executar a aplicação em sua máquina, basta seguir o passo-a-passo descrito no arquivos README das pastas.
+## Execução
 
-- [users-service](./trabalho_individual/users-service/README.md)
-- [chat-service](./trabalho_individual/chat-service/README.md).
-- [api-gateway](./trabalho_individual/api-gateway/README.md).
-- [chat-app](./trabalho_individual/chat-app/README.md).
-- [phpmyadmin](./trabalho_individual/phpmyadmin/README.md).
+Para executar a aplicação em sua máquina, basta seguir o passo-a-passo a seguir:
+
+Para subir todos os serviços deste projeto:
+
+```docker
+docker-compose up
+```
+
+Para rodar os testes do frontend:
+
+```docker
+docker-compose run --entrypoint "npm run test" frontend
+```
+
+Para rodar os testes do backend:
+
+```docker
+docker-compose run --entrypoint "npm run unittest" backend
+```
+
+Já para executar cada componente separado, basta seguir o passo-a-passo descrito no arquivos README das pastas:
+
+- [frontend](./frontend/README.md).
+- [backend](./backend/README.md).
 
 ## Critérios de avaliação
 

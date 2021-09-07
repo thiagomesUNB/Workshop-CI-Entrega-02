@@ -1,21 +1,16 @@
-FROM python:3.8.1-slim
+FROM node:lts
 
-ENV PYTHONUNBUFFERED 1
+RUN mkdir /app
 
-EXPOSE 8000
-WORKDIR /usr/app
+WORKDIR /app
 
+COPY package*.json /app/
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends netcat && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN npm install
+RUN npm i nodemon -g
 
-COPY poetry.lock pyproject.toml ./
-
-RUN pip install poetry==1.1
-RUN poetry config virtualenvs.in-project false
-RUN poetry install
-
-COPY . ./
+COPY . /app
 
 ENTRYPOINT ["bash", "entrypoint.sh"]
+
+EXPOSE 3000

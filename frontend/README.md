@@ -8,14 +8,6 @@
 
 ## Passo a passo
 
-Primeiro, clone o repositorio
-
-```console
-git clone https://github.com/FGA-GCES/Trabalho-Individual-2021-1
-
-cd Trabalho-Individual-2021-1/frontend
-```
-
 Instale as dependencias:
 
 ```console
@@ -26,6 +18,11 @@ Rode a aplicação:
 
 ```console
 yarn dev
+```
+
+Para rodar os testes:
+```console
+yarn test
 ```
 
 ## Fazendo requests pra Api

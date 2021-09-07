@@ -1,58 +1,39 @@
 version: '3'
 
 services:
+  database:
+    image: postgres
+    ports:
+      - '8000:5432'
+    environment:
+      POSTGRES_PASSWORD: Password1
+    networks: 
+      - network_app
 
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    env_file:
-      - .env
     ports:
-      - "8000:8000"
-    restart: on-failure
-    volumes:
-      - ./backend:/app
+      - '3000:3000'
     environment:
-      DB_CONNECTION: ${DB_CONNECTION}
+      TYPEORM_CONNECTION: postgres
+      TYPEORM_URL: postgres://postgres:Password1@database:5432/postgres
+      TYPEORM_ENTITIES: src/entities/*.js
+      SECRET: foobar
     depends_on:
-      - db
+      - database
     networks:
-      - app_network
-
-
-  db:
-    image: postgres:11.5-alpine
-    ports:
-      - "5432:5432"
-    env_file:
-      - .env
-    volumes:
-      - db_data:/var/lib/postgresql/data:cached
-    networks:
-      - app_network
-
+      - network_app
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    env_file:
-      - .env
     ports:
-      - "3000:3000"
-    restart: on-failure
-    volumes:
-      - ./frontend:/frontend
-      - node_modules_front:/frontend/node_modules  
+      - '3030:3000'
     networks:
-      - app_network
-
+      - network_app
 
 networks:
-  app_network:
-
-
-volumes:
-  db_data:
-  node_modules_front: 
+  network_app:

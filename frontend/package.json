@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "dependencies": {
     "@emotion/core": "^10.0.28",
@@ -21,8 +23,14 @@
     "swr": "^0.3.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@types/jest": "^27.0.1",
     "@types/node": "^14.0.27",
     "@types/react": "^16.9.44",
+    "babel-jest": "^27.1.0",
+    "jest": "^27.1.0",
     "typescript": "^3.9.7"
   }
 }
