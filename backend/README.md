@@ -1,12 +1,11 @@
 # Koa
 
-- [Pré-requisitos](#prerequisites)
-- [Local Setup](#local)
-- [Ejection](#ejection)
-- [Commands](#commands)
-- [External Docs](#docs)
-- [Project Structure](#structure)
+- [Pré-requisitos](#pré-requisitos)
+- [Instalação](#instalação)
+- [Comandos](#comandos)
+- [Docs Externos](#docs)
 - [License](#license)
+- [Fonte](#fonte)
 
 ## Pré-requisitos
 
@@ -126,6 +125,6 @@
 - **[MIT license](http://opensource.org/licenses/mit-license.php)**
 - Copyright 2020 © Evan Gordon Fleming.
 
-## Fonte
+## **Fonte**
 
 O repositório original desse serviço pode ser encontrado [aqui](https://github.com/gothinkster/realworld)

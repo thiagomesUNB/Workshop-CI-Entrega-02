@@ -6,8 +6,8 @@ Para exercitar estes conhecimentos, você deverá aplicar os conceitos estudados
 
 O sistema se trata de uma aplicação Web em NextJs e um backend em Koa, que é composta de:
 
-- Front-end escrito em React;
-- Back-end dividido em Koa;
+- Front-end escrito em NextJs;
+- Back-end escrito em Koa;
 - 1 Banco de Dados Postgres.
 
 ## Execução
