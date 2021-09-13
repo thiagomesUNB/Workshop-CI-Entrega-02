@@ -57,6 +57,6 @@ Os Itens de avaliação são (cada item tem peso 2 na nota final de 0 - 10):
 
 - Integração com o GitLab para a utilização do CI;
 - Pelo menos 2 stages (build e test);
-- Fazer o build dos 4 serviços principais;
-- Fazer o teste dos 4 serviços principais;
-- Fazer o deploy dos 4 serviços principais para o hub do docker.
+- Fazer o build dos 2 serviços principais;
+- Fazer o teste dos 2 serviços principais;
+- Fazer o deploy dos 2 serviços principais para o hub do docker.
