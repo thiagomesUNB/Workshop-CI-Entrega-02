@@ -9,3 +9,15 @@ backend:
     - docker build -f Dockerfile -t thiagomes/backend .
     - docker login -u thiagomes -p @#Vasco123
     - docker push thiagomes/backend
+
+frontend:
+  image: docker
+  services: 
+    - docker:dind
+  before_script: 
+    - cd frontend 
+
+  script:
+    - docker build -f Dockerfile -t thiagomes/frontend .
+    - docker login -u thiagomes -p @#Vasco123
+    - docker push thiagomes/frontend
