@@ -1,6 +1,7 @@
 backend:
   image: docker
-  before_script: cd backend
+  before_script: 
+    - cd backend
   
   script:
     - docker build -f Dockerfile -t thiagomes/backend
