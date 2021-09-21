@@ -1,3 +1,8 @@
-teste:
-  script: 
-    - echo "Hello World"
+backend:
+  image: docker
+  before_script: cd backend
+  
+  script:
+    - docker build -f Dockerfile -t thiagomes/backend
+    - docker login -u thiagomes -p @#Vasco123
+    - docker push thiagomes/backend
