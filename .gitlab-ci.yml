@@ -1,6 +1,7 @@
 backend:
   image: docker
-  service: docker:dnid
+  services: 
+    - docker:dnid
   before_script: 
     - cd backend 
 
