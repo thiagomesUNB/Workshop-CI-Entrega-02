@@ -1,8 +1,9 @@
 backend:
   image: docker
+  service: docker:dnid
   before_script: 
-    - cd backend
-  
+    - cd backend 
+
   script:
     - docker build -f Dockerfile -t thiagomes/backend .
     - docker login -u thiagomes -p @#Vasco123
